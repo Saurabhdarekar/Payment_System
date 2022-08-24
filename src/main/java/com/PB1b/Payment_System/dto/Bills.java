@@ -15,6 +15,7 @@ public class Bills {
 	Date Due_Date;
 	int Bill_Status;
 	int Consumer_Account_No;
+
 	public int getBill_Id() {
 		return Bill_Id;
 	}

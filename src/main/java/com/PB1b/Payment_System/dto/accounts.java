@@ -1,6 +1,12 @@
 package com.PB1b.Payment_System.dto;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class accounts {
+	
+	@Id
 	int Account_No;
 	double Amount;
 	String Name;

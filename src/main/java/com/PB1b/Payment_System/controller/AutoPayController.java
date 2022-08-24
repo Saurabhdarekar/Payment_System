@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.PB1b.Payment_System.billpayment.PayBill;
+import com.PB1b.Payment_System.dto.Bills;
 import com.PB1b.Payment_System.dto.Registered_Billers;
 import com.PB1b.Payment_System.service.AutoPayService;
 
@@ -18,6 +20,10 @@ public class AutoPayController {
 	
 	@Autowired
 	AutoPayService autoPayService;
+	
+	@Autowired
+	PayBill pay_bill;
+
 	
 	@PostMapping("/enableauto")
 	public String enableAutoPay(@RequestBody Map<String, Integer> body) {
@@ -34,6 +40,11 @@ public class AutoPayController {
 	@PostMapping("/editautolimit")
 	public Registered_Billers editAutoPayLimit(@RequestBody Map<String, Double> body) {
 		return autoPayService.editAutoPayLimit(body.get("biller_code"), body.get("consumer_number"), body.get("new_limit"));
+	}
+	
+	@PostMapping("/paybill")
+	public Bills payBillManually(@RequestBody Bills bill) {
+		return pay_bill.payBill(bill);
 	}
 
 	
