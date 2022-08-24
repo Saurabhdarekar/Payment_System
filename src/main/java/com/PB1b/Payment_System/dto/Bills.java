@@ -5,7 +5,11 @@ import java.sql.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
+
 @Entity
+@JsonNaming(PropertyNamingStrategy.UpperCamelCaseStrategy.class)
 public class Bills {
 	@Id
 	int Bill_Id;

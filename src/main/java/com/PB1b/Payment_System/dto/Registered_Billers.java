@@ -3,8 +3,14 @@ package com.PB1b.Payment_System.dto;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
+
 @Entity
+@JsonNaming(PropertyNamingStrategy.UpperCamelCaseStrategy.class)
 public class Registered_Billers {
+	
+	private
 	@Id
 	int Reg_Id;
 	int Bill_Id;

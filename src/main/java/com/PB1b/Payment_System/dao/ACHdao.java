@@ -11,12 +11,16 @@ import com.PB1b.Payment_System.repo.BillsRepo;
 import com.PB1b.Payment_System.repo.MasterBillersRepo;
 import com.PB1b.Payment_System.repo.RegisteredBillersRepo;
 
+import java.util.Optional;
+
 @Repository
 public class ACHdao {
 
 	@Autowired
 	MasterBillersRepo MBrepo; 
+	@Autowired
 	RegisteredBillersRepo RBrepo;
+    @Autowired
 	BillsRepo Brepo;
 	
 	public List<Master_Biller> FindAllMasterBillers() {
@@ -30,11 +34,11 @@ public class ACHdao {
 	public Registered_Billers SaveRegisteredBiller(Registered_Billers rb) {
 		return RBrepo.save(rb);
 	}
-	/*
+	
 	public Registered_Billers findRegisteredBillerById(int id) {
 		Optional<Registered_Billers> rb = RBrepo.findById(id);
-		if(Registered_Billers.isPresent()) {
-			//return Registered_Billers;
+		if(rb.isPresent()) {
+			return rb.get();
 		}
 		else {
 			return null;
@@ -51,14 +55,14 @@ public class ACHdao {
 			return true;
 		}
 	}
-	
+	/*
 	//For unpaid bills
 	public List<Bills> FindUsersAllBills(int Consumer_Account_No) {
 		return Brepo.UserBills(Consumer_Account_No);
 	}
-	/*
+	*/
 	// paid
 	public List<Bills> FindUsersAllBillsPaid(int Consumer_Account_No) {
-		return Brepo.UserBills(Consumer_Account_No);
-	}*/
+		return Brepo.UserBillsPaid(Consumer_Account_No);
+	}
 }

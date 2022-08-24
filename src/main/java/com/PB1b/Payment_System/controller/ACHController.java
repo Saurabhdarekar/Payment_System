@@ -61,16 +61,24 @@ public class ACHController {
 	}
 	
 	@PostMapping("/RegBiller")
-	public String RegisterBiller(@RequestBody Registered_Billers obj) {
+	public String RegisterBiller(@RequestBody Registered_Billers regbiller) { //Registered_Billers regbiller
 		String status;
 		status = "Biller Register";
-		service.SaveRegisteredBiller(obj);	
+		//System.out.println(name);
+		System.out.println(regbiller.getConsumer_No());
+		service.SaveRegisteredBiller(regbiller);	
 		return status;
 	}
-	/*
-	@DeleteMapping("DelRegBiller")
-	public String DeleteRegBiller(@RequestBody Registered_Billers rbiller) {
-		boolean flag = service.DeleteRegisteredBiller(rbiller.getRegId());
+	
+	@GetMapping("/temp/{id}")
+	public Registered_Billers findRegisteredBillerById(@PathVariable int id) {
+		return service.findRegisteredBillerById(id);
+	}
+	
+	@DeleteMapping("DelRegBiller/{id}")
+	public String DeleteRegBiller(@PathVariable int id) {
+		System.out.println(id);
+		boolean flag = service.DeleteRegisteredBiller(id);
 		if(flag) {
 			return "Biller deleted Successfully";
 		}else
@@ -79,10 +87,11 @@ public class ACHController {
 		}
 	}
 	
-	@GetMapping("ViewBills")
-	public List<Bills> ViewBills(@RequestBody Bills bill) {
-		int Consumer_Account_No = bill.getConsumer_Account_No();
-		return service.FindUsersAllBills(Consumer_Account_No);
+	@GetMapping("ViewBills/{id}")
+	public List<Bills> ViewBills(@PathVariable int id) {
+		
+		int Consumer_Account_No = id;//bill.getConsumer_Account_No();
+		return service.FindUsersAllBillsPaid(Consumer_Account_No);
 	}
 	/*
 	@PostMapping("PayBill")

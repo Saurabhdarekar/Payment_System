@@ -27,7 +27,7 @@ public class ACHService {
 	public Registered_Billers SaveRegisteredBiller(Registered_Billers rb) {
 		return dao.SaveRegisteredBiller(rb);
 	}
-	/*
+	
 	public Registered_Billers findRegisteredBillerById(int id) {
 		return dao.findRegisteredBillerById(id);
 	}
@@ -35,8 +35,9 @@ public class ACHService {
 	public boolean DeleteRegisteredBiller(int id) {
 		return dao.DeleteRegisteredBiller(id);
 	}
-	public List<Bills> FindUsersAllBills(int Consumer_Account_No) {
-		return dao.FindUsersAllBills(Consumer_Account_No);
+	
+	public List<Bills> FindUsersAllBillsPaid(int Consumer_Account_No) {
+		return dao.FindUsersAllBillsPaid(Consumer_Account_No);
 	}
-	*/
+	
 }
