@@ -1,14 +1,15 @@
 package com.PB1b.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.PB1b.dao.ACHdao;
 import com.PB1b.dto.Master_Biller;
 import com.PB1b.dto.Registered_Billers;
 
+@Service
 public class ACHService {
 	
 	@Autowired
