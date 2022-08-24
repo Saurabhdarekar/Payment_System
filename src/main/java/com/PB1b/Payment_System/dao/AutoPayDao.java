@@ -2,13 +2,16 @@ package com.PB1b.Payment_System.dao;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.PB1b.Payment_System.dto.accounts;
 import com.PB1b.Payment_System.dto.Bills;
 import com.PB1b.Payment_System.dto.Registered_Billers;
+import com.PB1b.Payment_System.repo.AccountRepo;
 import com.PB1b.Payment_System.repo.BillsRepo;
 import com.PB1b.Payment_System.repo.RegisteredBillersRepo;
 
@@ -21,6 +24,9 @@ public class AutoPayDao {
 	
 	@Autowired
 	BillsRepo bill_repo;
+	
+	@Autowired
+	AccountRepo accountRepo;
 	
 	public void enableAutoPay(int biller_code, int consumer_number) {
 		Registered_Billers reg_biller = reg_repo.getRegBiller(biller_code, consumer_number);
@@ -35,8 +41,8 @@ public class AutoPayDao {
 	}
 	
 	public List<Bills> getDayBills(){
-		LocalDate current_date = LocalDate.now(ZoneId.of("Asia/Calcutta")).plusDays(2);
-		return bill_repo.getFilteredBills(current_date.toString());
+		Date current_date = java.sql.Date.valueOf(LocalDate.now(ZoneId.of("Asia/Calcutta")).plusDays(2));
+		return bill_repo.getFilteredBills(current_date);
 	}
 	
 	public double getPayLimit(String biller_code, String consumer_number) {
@@ -53,6 +59,15 @@ public class AutoPayDao {
 	public void changeBillStatus(Bills bill) {
 		bill.setBill_Status(1);
 		bill_repo.save(bill);
+	}
+	
+	
+	public double getAccountBalance(Bills bill) {
+		return bill_repo.getAccountBalance(bill.getConsumer_Account_No());
+	}
+	
+	public accounts getBillerAccount(int bill_id) {
+		return accountRepo.getBillerAccount(bill_id);
 	}
 	
 }

@@ -18,7 +18,7 @@ public class ScheduleAutoPay {
 	PayBill pay_bill;
 
     //	Now 6:05am
-	@Scheduled(cron = "0 5 6 * * *", zone = "Asia/Calcutta")
+	@Scheduled(cron = "30 21 22 * * *", zone = "Asia/Calcutta")
 	public void performAutoPay() {
 		List<Bills> billsForDay = autoPayService.getDayBills();
 		for(Bills bill: billsForDay) {
