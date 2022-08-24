@@ -13,7 +13,7 @@ public class Transactions {
 	public void setDateTime(Date dateTime) {
 		DateTime = dateTime;
 	}
-	int Amount;
+	double Amount;
 	int DebitCredit;
 	String Description;
 	int Bill_Reference_No;
@@ -24,11 +24,15 @@ public class Transactions {
 	public void setTransaction_id(int transaction_id) {
 		Transaction_id = transaction_id;
 	}
-	public int getAmount() {
+	
+	public double getAmount() {
 		return Amount;
 	}
-	public void setAmount(int amount) {
+	public void setAmount(double amount) {
 		Amount = amount;
+	}
+	public Date getDateTime() {
+		return DateTime;
 	}
 	public int getDebitCredit() {
 		return DebitCredit;

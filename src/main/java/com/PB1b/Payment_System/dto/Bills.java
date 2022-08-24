@@ -11,7 +11,7 @@ public class Bills {
 	int Bill_Id;
 	String Biller_Code;
 	String Consumer_No;
-	int Amount;
+	double Amount;
 	Date Due_Date;
 	int Bill_Status;
 	int Consumer_Account_No;
@@ -33,13 +33,14 @@ public class Bills {
 	public void setConsumer_No(String consumer_No) {
 		Consumer_No = consumer_No;
 	}
-	public int getAmount() {
+	
+	
+	public double getAmount() {
 		return Amount;
 	}
-	public void setAmount(int amount) {
+	public void setAmount(double amount) {
 		Amount = amount;
 	}
-	
 	public Date getDue_Date() {
 		return Due_Date;
 	}

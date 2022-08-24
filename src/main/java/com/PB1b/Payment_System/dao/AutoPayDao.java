@@ -24,13 +24,13 @@ public class AutoPayDao {
 	
 	public void enableAutoPay(int biller_code, int consumer_number) {
 		Registered_Billers reg_biller = reg_repo.getRegBiller(biller_code, consumer_number);
-		reg_biller.setAutoPay(1);
+		reg_biller.setAuto_Pay(1);
 		reg_repo.save(reg_biller);
 	}
 	
 	public void disableAutoPay(int biller_code, int consumer_number) {
 		Registered_Billers reg_biller = reg_repo.getRegBiller(biller_code, consumer_number);
-		reg_biller.setAutoPay(0);
+		reg_biller.setAuto_Pay(0);
 		reg_repo.save(reg_biller);
 	}
 	
@@ -40,12 +40,12 @@ public class AutoPayDao {
 	}
 	
 	public double getPayLimit(String biller_code, String consumer_number) {
-		return bill_repo.getPayLimit(biller_code, consumer_number);
+		return bill_repo.getAuto_Pay_Limit(biller_code, consumer_number);
 	}
 	
 	public Registered_Billers editAutoPayLimit(double biller_code, double consumer_number, double new_limit) {
 		Registered_Billers reg_biller = reg_repo.getRegBiller((int)biller_code, (int)consumer_number);
-		reg_biller.setPayLimit((int)new_limit);
+		reg_biller.setAuto_Pay_Limit((int)new_limit);
 		reg_repo.save(reg_biller);
 		return reg_biller;
 	}

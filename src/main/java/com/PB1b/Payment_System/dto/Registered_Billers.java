@@ -6,18 +6,14 @@ import javax.persistence.Id;
 @Entity
 public class Registered_Billers {
 	@Id
-	int RegId;
+	int Reg_Id;
+	int Bill_Id;
 	String Biller_Ref_code ;
 	String Consumer_No;
 	int Account_No;
-	int AutoPay;
-	int PayLimit;
-	public int getRegId() {
-		return RegId;
-	}
-	public void setRegId(int regId) {
-		RegId = regId;
-	}
+	int Auto_Pay;
+	double Auto_Pay_Limit;
+	
 	public String getBiller_Ref_code() {
 		return Biller_Ref_code;
 	}
@@ -36,17 +32,30 @@ public class Registered_Billers {
 	public void setAccount_No(int account_No) {
 		Account_No = account_No;
 	}
-	public int getAutoPay() {
-		return AutoPay;
+	
+	public int getReg_Id() {
+		return Reg_Id;
 	}
-	public void setAutoPay(int autoPay) {
-		AutoPay = autoPay;
+	public void setReg_Id(int reg_Id) {
+		Reg_Id = reg_Id;
 	}
-	public int getPayLimit() {
-		return PayLimit;
+	public int getBill_Id() {
+		return Bill_Id;
 	}
-	public void setPayLimit(int limit) {
-		PayLimit = limit;
+	public void setBill_Id(int bill_Id) {
+		Bill_Id = bill_Id;
+	}
+	public int getAuto_Pay() {
+		return Auto_Pay;
+	}
+	public void setAuto_Pay(int auto_Pay) {
+		Auto_Pay = auto_Pay;
+	}
+	public double getAuto_Pay_Limit() {
+		return Auto_Pay_Limit;
+	}
+	public void setAuto_Pay_Limit(double auto_Pay_Limit) {
+		Auto_Pay_Limit = auto_Pay_Limit;
 	}
 	public static boolean isPresent() {
 		// TODO Auto-generated method stub

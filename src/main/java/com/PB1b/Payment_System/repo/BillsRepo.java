@@ -12,7 +12,7 @@ public interface BillsRepo extends JpaRepository<Bills, Integer> {
 //	@Query("Select")
 //	List<Bills> UserBills(int Consumer_Account_No);
 
-	@Query("select b from Bills as b where (select AutoPay "
+	@Query("select b from Bills as b where (select Auto_Pay "
 			+ "from Registered_Billers where Biller_Ref_code=b.Biller_Code "
 			+ "AND Consumer_No=b.Consumer_No)=1 "
 			+ "AND b.Bill_Status=0 "
@@ -20,6 +20,6 @@ public interface BillsRepo extends JpaRepository<Bills, Integer> {
 	List<Bills> getFilteredBills(String current_date);
 	
 	
-	@Query("select PayLimit from Registered_Billers where Biller_Ref_code=?1 AND Consumer_No=?2")
-	double getPayLimit(String biller_code, String consumer_number); 
+	@Query("select Auto_Pay_Limit from Registered_Billers where Biller_Ref_code=?1 AND Consumer_No=?2")
+	double getAuto_Pay_Limit(String biller_code, String consumer_number); 
 }

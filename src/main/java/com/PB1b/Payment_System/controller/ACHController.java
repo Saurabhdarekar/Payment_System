@@ -3,7 +3,10 @@ package com.PB1b.Payment_System.controller;
 import java.io.IOException;
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +25,31 @@ public class ACHController {
 	@Autowired
 	ACHService service;
 	//View Billers available
+	
+	@Autowired
+    private JavaMailSender javaMailSender;
+    // Sending a simple Email
+    
+	public void sendEmail(String Email, String Subject, String Text) {
+
+        SimpleMailMessage msg = new SimpleMailMessage();
+        msg.setTo(Email);
+
+        msg.setSubject(Subject);
+        msg.setText(Text);
+
+        javaMailSender.send(msg);
+
+    }	
+	
+	@GetMapping("/message")
+	public void message(){
+		//Email e = new Email();
+		sendEmail("barclayscapstone@gmail.com", "hi", "hi");
+
+		System.out.println("I m invoked");
+	}
+	
 	@GetMapping("/ViewMasterBillers")
 	public List<Master_Biller> ViewMasterBillers(){
 		return service.FindAllMasterBillers();
