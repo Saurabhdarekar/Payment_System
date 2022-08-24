@@ -1,11 +1,12 @@
 package com.PB1b.dto;
 
+import java.sql.Date;
 public class Bills {
 	int Bill_Id;
 	String Biller_Code;
 	String Consumer_No;
 	int Amount;
-	String Due_Date;
+	Date Due_Date;
 	int Bill_Status;
 	int Consumer_Account_No;
 	public int getBill_Id() {
@@ -32,10 +33,11 @@ public class Bills {
 	public void setAmount(int amount) {
 		Amount = amount;
 	}
-	public String getDue_Date() {
+	
+	public Date getDue_Date() {
 		return Due_Date;
 	}
-	public void setDue_Date(String due_Date) {
+	public void setDue_Date(Date due_Date) {
 		Due_Date = due_Date;
 	}
 	public int getBill_Status() {

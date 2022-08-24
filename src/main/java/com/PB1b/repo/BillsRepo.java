@@ -9,6 +9,9 @@ import com.PB1b.dto.Bills;
 
 public interface BillsRepo extends JpaRepository<Bills, Integer> {
 	
+	@Query("Select")
+	List<Bills> UserBills(int Consumer_Account_No);
+
 	@Query("select b from Bills as b where (select AutoPay "
 			+ "from Registered_Billers where Biller_Ref_code=b.Biller_Code "
 			+ "AND Consumer_No=b.Consumer_No)=1 "

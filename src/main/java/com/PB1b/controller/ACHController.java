@@ -39,7 +39,7 @@ public class ACHController {
 		service.SaveRegisteredBiller(obj);	
 		return status;
 	}
-	
+	/*
 	@DeleteMapping("DelRegBiller")
 	public String DeleteRegBiller(@RequestBody Registered_Billers rbiller) {
 		boolean flag = service.DeleteRegisteredBiller(rbiller.getRegId());
@@ -50,12 +50,13 @@ public class ACHController {
 			return "Biller not deleted Successfully";
 		}
 	}
-	
+	*/
 	@GetMapping("ViewBills")
-	public List<Bills> ViewBills() {
-		service.
+	public List<Bills> ViewBills(@RequestBody Bills bill) {
+		int Consumer_Account_No = bill.getConsumer_Account_No();
+		return service.FindUsersAllBills(Consumer_Account_No);
 	}
-	
+	/*
 	@PostMapping("PayBill")
 	public String PayBill(@RequestBody Bills bill) {
 		
@@ -64,7 +65,7 @@ public class ACHController {
 	@GetMapping("/GetPaidBills/{Biller}")
 	public String GetPaidBills(@PathVariable String Biller) {
 		
-	}
+	}*/
 	
 	
 }

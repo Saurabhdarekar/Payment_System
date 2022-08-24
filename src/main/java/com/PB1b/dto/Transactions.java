@@ -1,9 +1,13 @@
 package com.PB1b.dto;
 
+import java.sql.Date;
 public class Transactions {
 	//int SequenceID;
 	int Transaction_id;
-	String DateTime;
+	Date DateTime;
+	public void setDateTime(Date dateTime) {
+		DateTime = dateTime;
+	}
 	int Amount;
 	int DebitCredit;
 	String Description;
@@ -13,12 +17,6 @@ public class Transactions {
 	}
 	public void setTransaction_id(int transaction_id) {
 		Transaction_id = transaction_id;
-	}
-	public String getDateTime() {
-		return DateTime;
-	}
-	public void setDateTime(String dateTime) {
-		DateTime = dateTime;
 	}
 	public int getAmount() {
 		return Amount;

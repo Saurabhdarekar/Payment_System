@@ -8,7 +8,8 @@ import com.PB1b.dto.Master_Biller;
 import com.PB1b.dto.Registered_Billers;
 import com.PB1b.repo.MasterBillersRepo;
 import com.PB1b.repo.RegisteredBillersRepo;
-
+import com.PB1b.dto.Bills;
+import com.PB1b.repo.BillsRepo;
 
 @Repository
 public class ACHdao {
@@ -16,6 +17,7 @@ public class ACHdao {
 	@Autowired
 	MasterBillersRepo MBrepo; 
 	RegisteredBillersRepo RBrepo;
+	BillsRepo Brepo;
 	
 	public List<Master_Biller> FindAllMasterBillers() {
 		return MBrepo.findAll();
@@ -28,7 +30,7 @@ public class ACHdao {
 	public Registered_Billers SaveRegisteredBiller(Registered_Billers rb) {
 		return RBrepo.save(rb);
 	}
-	
+	/*
 	public Registered_Billers findRegisteredBillerById(int id) {
 		Optional<Registered_Billers> rb = RBrepo.findById(id);
 		if(Registered_Billers.isPresent()) {
@@ -48,9 +50,15 @@ public class ACHdao {
 		else {
 			return true;
 		}
-	}
+	}*/
 	
-	public List<Master_Biller> FindAllBills() {
-		return MBrepo.findAll();
+	//For unpaid bills
+	public List<Bills> FindUsersAllBills(int Consumer_Account_No) {
+		return Brepo.UserBills(Consumer_Account_No);
 	}
+	/*
+	// paid
+	public List<Bills> FindUsersAllBillsPaid(int Consumer_Account_No) {
+		return Brepo.UserBills(Consumer_Account_No);
+	}*/
 }
