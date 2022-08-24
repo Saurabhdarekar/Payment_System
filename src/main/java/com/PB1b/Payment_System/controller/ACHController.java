@@ -93,6 +93,16 @@ public class ACHController {
 		int Consumer_Account_No = id;//bill.getConsumer_Account_No();
 		return service.FindUsersAllBillsPaid(Consumer_Account_No);
 	}
+	
+	@GetMapping("/transactions/export")
+	public void exportToCSV(HttpServletResponse response) throws IOException, PaymentsException {
+		response.setContentType("text/csv");
+
+
+		userService.listall(response);
+
+
+	}
 	/*
 	@PostMapping("PayBill")
 	public String PayBill(@RequestBody Bills bill) {
