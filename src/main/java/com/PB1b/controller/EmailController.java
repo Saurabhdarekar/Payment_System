@@ -12,20 +12,15 @@ public class EmailController {
     private JavaMailSender javaMailSender;
     // Sending a simple Email
     
-	void sendEmail() {
+	void sendEmail(String Email, String Subject, String Text) {
 
         SimpleMailMessage msg = new SimpleMailMessage();
-        msg.setTo("saurabhdarekar294@gmail.com");
+        msg.setTo(Email);
 
-        msg.setSubject("Testing from - Spring Boot");
-        msg.setText("Hello World \n Spring Boot Email");
+        msg.setSubject(Subject);
+        msg.setText(Text);
 
         javaMailSender.send(msg);
 
-    }
-	@GetMapping("/message")
-	public void message(){
-		sendEmail();
-		System.out.println("I m invoked");
-	}	
+    }	
 }

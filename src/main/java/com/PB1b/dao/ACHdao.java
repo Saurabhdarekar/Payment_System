@@ -1,15 +1,15 @@
 package com.PB1b.dao;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
-import com.PB1b.dto.MasterBillers;
-import com.PB1b.dto.RegisteredBiller;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.PB1b.dto.Master_Biller;
+import com.PB1b.dto.Registered_Billers;
 import com.PB1b.repo.MasterBillersRepo;
 import com.PB1b.repo.RegisteredBillersRepo;
-import com.org.springbootuser.dto.User;
 
 
 @Repository
@@ -19,22 +19,22 @@ public class ACHdao {
 	MasterBillersRepo MBrepo; 
 	RegisteredBillersRepo RBrepo;
 	
-	public List<MasterBillers> FindAllMasterBillers() {
+	public List<Master_Biller> FindAllMasterBillers() {
 		return MBrepo.findAll();
 	}
 	
-	public List<RegisteredBiller> FindAllRegisteredBillers(){
+	public List<Registered_Billers> FindAllRegisteredBillers(){
 		return RBrepo.findAll();
 	}
 	
-	public RegisteredBiller SaveRegisteredBiller(RegisteredBiller rb) {
+	public Registered_Billers SaveRegisteredBiller(Registered_Billers rb) {
 		return RBrepo.save(rb);
 	}
 	
-	public RegisteredBiller findRegisteredBillerById(int id) {
-		Optional<RegisteredBiller> rb = RBrepo.findById(id);
-		if(RegisteredBiller.isPresent()) {
-			return RegisteredBiller.get();
+	public Registered_Billers findRegisteredBillerById(int id) {
+		Optional<Registered_Billers> rb = RBrepo.findById(id);
+		if(Registered_Billers.isPresent()) {
+			//return Registered_Billers;
 		}
 		else {
 			return null;
@@ -42,7 +42,7 @@ public class ACHdao {
 	}
 	
 	public boolean DeleteRegisteredBiller(int id) {
-		RegisteredBiller rb = findRegisteredBillerById(id);
+		Registered_Billers rb = findRegisteredBillerById(id);
 		if(rb != null) {
 			RBrepo.delete(rb);
 			return true;
@@ -52,7 +52,7 @@ public class ACHdao {
 		}
 	}
 	
-	public List<MasterBillers> FindAllBills() {
+	public List<Master_Biller> FindAllBills() {
 		return MBrepo.findAll();
 	}
 }

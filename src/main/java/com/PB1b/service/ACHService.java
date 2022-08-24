@@ -6,27 +6,27 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.PB1b.dao.ACHdao;
-import com.PB1b.dto.MasterBillers;
-import com.PB1b.dto.RegisteredBiller;
+import com.PB1b.dto.Master_Biller;
+import com.PB1b.dto.Registered_Billers;
 
 public class ACHService {
 	
 	@Autowired
 	ACHdao dao;
 	
-	public List<MasterBillers> FindAllMasterBillers() {
+	public List<Master_Biller> FindAllMasterBillers() {
 		return dao.FindAllMasterBillers();
 	}
 	
-	public List<RegisteredBiller> FindAllRegisteredBillers(){
+	public List<Registered_Billers> FindAllRegisteredBillers(){
 		return dao.FindAllRegisteredBillers();
 	}
 	
-	public RegisteredBiller SaveRegisteredBiller(RegisteredBiller rb) {
+	public Registered_Billers SaveRegisteredBiller(Registered_Billers rb) {
 		return dao.SaveRegisteredBiller(rb);
 	}
 	
-	public RegisteredBiller findRegisteredBillerById(int id) {
+	public Registered_Billers findRegisteredBillerById(int id) {
 		return dao.findRegisteredBillerById(id);
 	}
 	

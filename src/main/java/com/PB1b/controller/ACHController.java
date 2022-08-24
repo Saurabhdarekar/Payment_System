@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.PB1b.dto.RegisteredBiller;
 import com.PB1b.service.ACHService;
-import com.PB1b.dto.MasterBillers;
+import com.PB1b.dto.Master_Biller;
+import com.PB1b.dto.Registered_Billers;
 import com.PB1b.dto.Bills;
 
 @RestController
@@ -23,17 +23,17 @@ public class ACHController {
 	ACHService service;
 	//View Billers available
 	@GetMapping("/ViewMasterBillers")
-	public List<MasterBillers> ViewMasterBillers(){
+	public List<Master_Biller> ViewMasterBillers(){
 		return service.FindAllMasterBillers();
 	}
 	
 	@GetMapping("/ViewRegBillers")
-	public List<RegisteredBiller> ViewRegBillers(){
+	public List<Registered_Billers> ViewRegBillers(){
 		return service.FindAllRegisteredBillers();
 	}
 	
 	@PostMapping("/RegBiller")
-	public String RegisterBiller(@RequestBody RegisteredBiller obj) {
+	public String RegisterBiller(@RequestBody Registered_Billers obj) {
 		String status;
 		status = "Biller Register";
 		service.SaveRegisteredBiller(obj);	
@@ -41,8 +41,8 @@ public class ACHController {
 	}
 	
 	@DeleteMapping("DelRegBiller")
-	public String DeleteRegBiller(@RequestBody RegisteredBiller rbiller) {
-		boolean flag = service.DeleteRegisteredBiller(obj.id);
+	public String DeleteRegBiller(@RequestBody Registered_Billers rbiller) {
+		boolean flag = service.DeleteRegisteredBiller(rbiller.getRegId());
 		if(flag) {
 			return "Biller deleted Successfully";
 		}else
@@ -53,7 +53,7 @@ public class ACHController {
 	
 	@GetMapping("ViewBills")
 	public List<Bills> ViewBills() {
-		
+		service.
 	}
 	
 	@PostMapping("PayBill")
