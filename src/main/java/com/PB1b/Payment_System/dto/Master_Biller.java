@@ -1,6 +1,11 @@
-package com.PB1b.dto;
+package com.PB1b.Payment_System.dto;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Master_Biller {
+	@Id
 	String BillerCode;
 	String Name;
 	public String getBillerCode() {

@@ -1,14 +1,14 @@
-package com.PB1b.service;
+package com.PB1b.Payment_System.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.PB1b.dao.ACHdao;
-import com.PB1b.dto.Bills;
-import com.PB1b.dto.Master_Biller;
-import com.PB1b.dto.Registered_Billers;
+import com.PB1b.Payment_System.dao.ACHdao;
+import com.PB1b.Payment_System.dto.Bills;
+import com.PB1b.Payment_System.dto.Master_Biller;
+import com.PB1b.Payment_System.dto.Registered_Billers;
 
 @Service
 public class ACHService {
@@ -34,8 +34,9 @@ public class ACHService {
 	
 	public boolean DeleteRegisteredBiller(int id) {
 		return dao.DeleteRegisteredBiller(id);
-	}*/
+	}
 	public List<Bills> FindUsersAllBills(int Consumer_Account_No) {
 		return dao.FindUsersAllBills(Consumer_Account_No);
 	}
+	*/
 }

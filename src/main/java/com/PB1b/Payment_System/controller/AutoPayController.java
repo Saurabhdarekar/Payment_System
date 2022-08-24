@@ -1,4 +1,4 @@
-package com.PB1b.controller;
+package com.PB1b.Payment_System.controller;
 
 import java.util.List;
 import java.util.Map;
@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.PB1b.dto.Registered_Billers;
-import com.PB1b.service.AutoPayService;
+import com.PB1b.Payment_System.dto.Registered_Billers;
+import com.PB1b.Payment_System.service.AutoPayService;
 
 @RestController
 public class AutoPayController {

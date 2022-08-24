@@ -1,12 +1,12 @@
-package com.PB1b.billpayment;
+package com.PB1b.Payment_System.billpayment;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import com.PB1b.dto.Bills;
-import com.PB1b.service.AutoPayService;
+import com.PB1b.Payment_System.dto.Bills;
+import com.PB1b.Payment_System.service.AutoPayService;
 
 @Component
 public class ScheduleAutoPay {

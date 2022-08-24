@@ -1,7 +1,13 @@
-package com.PB1b.dto;
+package com.PB1b.Payment_System.dto;
 
 import java.sql.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Bills {
+	@Id
 	int Bill_Id;
 	String Biller_Code;
 	String Consumer_No;

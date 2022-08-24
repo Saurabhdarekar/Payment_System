@@ -1,4 +1,4 @@
-package com.PB1b.dao;
+package com.PB1b.Payment_System.dao;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -7,10 +7,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.PB1b.dto.Bills;
-import com.PB1b.dto.Registered_Billers;
-import com.PB1b.repo.BillsRepo;
-import com.PB1b.repo.RegisteredBillersRepo;
+import com.PB1b.Payment_System.dto.Bills;
+import com.PB1b.Payment_System.dto.Registered_Billers;
+import com.PB1b.Payment_System.repo.BillsRepo;
+import com.PB1b.Payment_System.repo.RegisteredBillersRepo;
 
 
 @Repository
@@ -45,7 +45,7 @@ public class AutoPayDao {
 	
 	public Registered_Billers editAutoPayLimit(double biller_code, double consumer_number, double new_limit) {
 		Registered_Billers reg_biller = reg_repo.getRegBiller((int)biller_code, (int)consumer_number);
-		reg_biller.setLimit((int)new_limit);
+		reg_biller.setPayLimit((int)new_limit);
 		reg_repo.save(reg_biller);
 		return reg_biller;
 	}

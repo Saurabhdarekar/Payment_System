@@ -1,8 +1,13 @@
-package com.PB1b.dto;
+package com.PB1b.Payment_System.dto;
 
 import java.sql.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Transactions {
-	//int SequenceID;
+	@Id
 	int Transaction_id;
 	Date DateTime;
 	public void setDateTime(Date dateTime) {
@@ -12,6 +17,7 @@ public class Transactions {
 	int DebitCredit;
 	String Description;
 	int Bill_Reference_No;
+
 	public int getTransaction_id() {
 		return Transaction_id;
 	}

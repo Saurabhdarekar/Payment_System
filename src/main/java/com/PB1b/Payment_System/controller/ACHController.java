@@ -1,4 +1,4 @@
-package com.PB1b.controller;
+package com.PB1b.Payment_System.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.PB1b.service.ACHService;
-import com.PB1b.dto.Master_Biller;
-import com.PB1b.dto.Registered_Billers;
-import com.PB1b.dto.Bills;
+import com.PB1b.Payment_System.dto.Bills;
+import com.PB1b.Payment_System.dto.Master_Biller;
+import com.PB1b.Payment_System.dto.Registered_Billers;
+import com.PB1b.Payment_System.service.ACHService;
 
 @RestController
 public class ACHController {
@@ -50,7 +50,7 @@ public class ACHController {
 			return "Biller not deleted Successfully";
 		}
 	}
-	*/
+	
 	@GetMapping("ViewBills")
 	public List<Bills> ViewBills(@RequestBody Bills bill) {
 		int Consumer_Account_No = bill.getConsumer_Account_No();

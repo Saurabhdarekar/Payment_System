@@ -1,15 +1,15 @@
-package com.PB1b.dao;
+package com.PB1b.Payment_System.dao;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.PB1b.dto.Master_Biller;
-import com.PB1b.dto.Registered_Billers;
-import com.PB1b.repo.MasterBillersRepo;
-import com.PB1b.repo.RegisteredBillersRepo;
-import com.PB1b.dto.Bills;
-import com.PB1b.repo.BillsRepo;
+import com.PB1b.Payment_System.dto.Bills;
+import com.PB1b.Payment_System.dto.Master_Biller;
+import com.PB1b.Payment_System.dto.Registered_Billers;
+import com.PB1b.Payment_System.repo.BillsRepo;
+import com.PB1b.Payment_System.repo.MasterBillersRepo;
+import com.PB1b.Payment_System.repo.RegisteredBillersRepo;
 
 @Repository
 public class ACHdao {
@@ -50,7 +50,7 @@ public class ACHdao {
 		else {
 			return true;
 		}
-	}*/
+	}
 	
 	//For unpaid bills
 	public List<Bills> FindUsersAllBills(int Consumer_Account_No) {

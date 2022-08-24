@@ -1,4 +1,4 @@
-package com.PB1b.controller;
+package com.PB1b.Payment_System.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;

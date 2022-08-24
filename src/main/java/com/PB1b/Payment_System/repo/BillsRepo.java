@@ -1,16 +1,16 @@
-package com.PB1b.repo;
+package com.PB1b.Payment_System.repo;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import com.PB1b.dto.Bills;
+import com.PB1b.Payment_System.dto.Bills;
 
 public interface BillsRepo extends JpaRepository<Bills, Integer> {
 	
-	@Query("Select")
-	List<Bills> UserBills(int Consumer_Account_No);
+//	@Query("Select")
+//	List<Bills> UserBills(int Consumer_Account_No);
 
 	@Query("select b from Bills as b where (select AutoPay "
 			+ "from Registered_Billers where Biller_Ref_code=b.Biller_Code "
@@ -20,6 +20,6 @@ public interface BillsRepo extends JpaRepository<Bills, Integer> {
 	List<Bills> getFilteredBills(String current_date);
 	
 	
-	@Query("select Limit from Registered_Billers where Biller_Ref_code=?1 AND Consumer_No=?2")
+	@Query("select PayLimit from Registered_Billers where Biller_Ref_code=?1 AND Consumer_No=?2")
 	double getPayLimit(String biller_code, String consumer_number); 
 }

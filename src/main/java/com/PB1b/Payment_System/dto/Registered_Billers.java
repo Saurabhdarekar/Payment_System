@@ -1,12 +1,17 @@
-package com.PB1b.dto;
+package com.PB1b.Payment_System.dto;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Registered_Billers {
+	@Id
 	int RegId;
 	String Biller_Ref_code ;
 	String Consumer_No;
 	int Account_No;
 	int AutoPay;
-	int Limit;
+	int PayLimit;
 	public int getRegId() {
 		return RegId;
 	}
@@ -37,11 +42,11 @@ public class Registered_Billers {
 	public void setAutoPay(int autoPay) {
 		AutoPay = autoPay;
 	}
-	public int getLimit() {
-		return Limit;
+	public int getPayLimit() {
+		return PayLimit;
 	}
-	public void setLimit(int limit) {
-		Limit = limit;
+	public void setPayLimit(int limit) {
+		PayLimit = limit;
 	}
 	public static boolean isPresent() {
 		// TODO Auto-generated method stub
