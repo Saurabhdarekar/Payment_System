@@ -20,11 +20,11 @@ public class AutoPayService {
 	AutoPayDao autoPayDao;
 
 	
-	public void enableAutoPay(int biller_code, int consumer_code) {
+	public void enableAutoPay(String biller_code, String consumer_code) {
 		autoPayDao.enableAutoPay(biller_code, consumer_code);
 	}
 	
-	public void disableAutoPay(int biller_code, int consumer_code) {
+	public void disableAutoPay(String biller_code, String consumer_code) {
 		autoPayDao.disableAutoPay(biller_code, consumer_code);
 	}
 	
@@ -36,7 +36,7 @@ public class AutoPayService {
 		return autoPayDao.getPayLimit(biller_code, consumer_number);
 	}
 	
-	public Registered_Billers editAutoPayLimit(double biller_code, double consumer_number, double new_limit) {
+	public Registered_Billers editAutoPayLimit(String biller_code, String consumer_number, String new_limit) {
 		return autoPayDao.editAutoPayLimit(biller_code, consumer_number, new_limit);
 	}
 	
