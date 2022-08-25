@@ -57,6 +57,7 @@ public class ACHController {
 	}
 	@GetMapping("/ViewMasterBillers")
 	public ResponseEntity<List<Master_Biller>> ViewMasterBillers(@CookieValue(value = "username", defaultValue = "Atta") String username, @CookieValue(value = "Role", defaultValue = "None") String Role){
+		System.out.println(Role);
 		if(Role.equals("AccountHolder")) {
 			return new ResponseEntity<>(service.FindAllMasterBillers(), HttpStatus.OK);
 		}
