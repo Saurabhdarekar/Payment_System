@@ -18,11 +18,13 @@ public class ScheduleAutoPay {
 	PayBill pay_bill;
 
     //	Now 6:05am
-	@Scheduled(cron = "30 21 22 * * *", zone = "Asia/Calcutta")
+	@Scheduled(cron = "20 1 11 * * *", zone = "Asia/Calcutta")
 	public void performAutoPay() {
 		List<Bills> billsForDay = autoPayService.getDayBills();
+		System.out.println("Bill Ids: ");
 		for(Bills bill: billsForDay) {
 			pay_bill.checkLimits(bill, true);
+			System.out.println(bill.getBill_Id());
 		}
 	}
 	

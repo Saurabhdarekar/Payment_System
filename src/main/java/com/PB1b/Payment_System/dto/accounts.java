@@ -9,6 +9,7 @@ public class accounts {
 	@Id
 	int Account_No;
 	double Amount;
+	double Current_Balance;
 	String Name;
 	String Email_Address;
 	public int getAccount_No() {
@@ -34,6 +35,12 @@ public class accounts {
 	}
 	public void setEmail_Address(String email_Address) {
 		Email_Address = email_Address;
+	}
+	public double getCurrent_Balance() {
+		return Current_Balance;
+	}
+	public void setCurrent_Balance(double current_Balance) {
+		Current_Balance = current_Balance;
 	}
 	
 }

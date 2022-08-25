@@ -43,11 +43,11 @@ public class PayBill {
 		
 		// transfer the amount to the biller
 		accounts consumer_account = accountRepo.findById(bill.getConsumer_Account_No()).get();
-		consumer_account.setAmount(consumer_account.getAmount() - bill.getAmount());
+		consumer_account.setCurrent_Balance(consumer_account.getCurrent_Balance() - bill.getAmount());
 		accountRepo.save(consumer_account);
 		
 		accounts biller_account = autoPayService.getBillerAccount(bill.getBill_Id());
-		biller_account.setAmount(biller_account.getAmount() + bill.getAmount());
+		biller_account.setCurrent_Balance(biller_account.getCurrent_Balance() + bill.getAmount());
 		accountRepo.save(biller_account);
 
 		// Change status of pending to paid
@@ -59,7 +59,7 @@ public class PayBill {
 	private void handleExceptions(String exception_type, Bills bill) {
 		
 		accounts currrent_account = accountRepo.findById(bill.getConsumer_Account_No()).get();
-		
+		System.out.println("In exception!" + exception_type);
 		if (exception_type == "CrossedPayLimit") {
 			sendEmail.sendMail(currrent_account.getEmail_Address(), "Amount above pay limit!", "Auto Pay Amount exceeded pay limit please pay manually!");
 		} else if (exception_type == "InsufficientBalance") {

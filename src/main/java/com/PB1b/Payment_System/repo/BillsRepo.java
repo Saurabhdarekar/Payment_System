@@ -24,12 +24,11 @@ public interface BillsRepo extends JpaRepository<Bills, Integer> {
 	@Query("select Auto_Pay_Limit from Registered_Billers where Biller_Ref_code=?1 AND Consumer_No=?2")
 	double getAuto_Pay_Limit(String biller_code, String consumer_number); 
 	
-<<<<<<< HEAD
 	@Query("SELECT u FROM Bills u where u.Consumer_No=8766739801 and u.Bill_Status = 1 ")
 	List<Bills> UserBillsPaid(int Consumer_Account_No);
-=======
-	@Query("select Amount from Accounts where Account_No=?1")
+
+	@Query("select Current_Balance from accounts where Account_No=?1")
 	double getAccountBalance(int account_number);
->>>>>>> 32fe32b2e047edbc78f2e391cdd15635071b62fb
+
 }
 //"SELECT u FROM Bills u WHERE u.Consumer_Account_No=?1 AND u.Bill_Status=1")
