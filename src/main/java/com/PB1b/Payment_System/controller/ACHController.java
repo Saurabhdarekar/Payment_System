@@ -3,10 +3,15 @@ package com.PB1b.Payment_System.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,79 +35,88 @@ public class ACHController {
     private JavaMailSender javaMailSender;
     // Sending a simple Email
     
-	public void sendEmail(String Email, String Subject, String Text) {
+	@GetMapping("/Setcookies")
+	public ResponseEntity<?> set(HttpServletResponse response){
+		Cookie cookie = new Cookie("username", "Jovan");
+		
+		cookie.setMaxAge(7 * 24 * 60 * 60); // expires in 7 days
+		
+		Cookie cookie1 = new Cookie("Role", "AccountHolder");
+		
+		cookie.setMaxAge(7 * 24 * 60 * 60);
+	    // add cookie to response
+	    response.addCookie(cookie);
+	    response.addCookie(cookie1);
 
-        SimpleMailMessage msg = new SimpleMailMessage();
-        msg.setTo(Email);
+	    // TODO: add your login logic here
+	    String jwtToken = "NOT_AVAILABLE";
 
-        msg.setSubject(Subject);
-        msg.setText(Text);
-
-        javaMailSender.send(msg);
-
-    }	
-	
-	@GetMapping("/message")
-	public void message(){
-		//Email e = new Email();
-		sendEmail("barclayscapstone@gmail.com", "hi", "hi");
-
-		System.out.println("I m invoked");
+	    // return response entity
+	    return new ResponseEntity<>(jwtToken, HttpStatus.OK);
+		//return service.FindAllMasterBillers();
 	}
-	
 	@GetMapping("/ViewMasterBillers")
-	public List<Master_Biller> ViewMasterBillers(){
-		return service.FindAllMasterBillers();
+	public ResponseEntity<List<Master_Biller>> ViewMasterBillers(@CookieValue(value = "username", defaultValue = "Atta") String username, @CookieValue(value = "Role", defaultValue = "None") String Role){
+		if(Role.equals("AccountHolder")) {
+			return new ResponseEntity<>(service.FindAllMasterBillers(), HttpStatus.OK);
+		}
+		return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
 	}
 	
 	@GetMapping("/ViewRegBillers")
-	public List<Registered_Billers> ViewRegBillers(){
-		return service.FindAllRegisteredBillers();
+	public ResponseEntity<List<Registered_Billers>> ViewRegBillers(@CookieValue(value = "username", defaultValue = "Atta") String username, @CookieValue(value = "Role", defaultValue = "None") String Role){
+		if(Role.equals("AccountHolder")) {
+			return new ResponseEntity<>(service.FindAllRegisteredBillers(), HttpStatus.OK);
+		}
+		return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
 	}
 	
 	@PostMapping("/RegBiller")
-	public String RegisterBiller(@RequestBody Registered_Billers regbiller) { //Registered_Billers regbiller
+	public ResponseEntity<String> RegisterBiller(@RequestBody Registered_Billers regbiller, @CookieValue(value = "username", defaultValue = "Atta") String username, @CookieValue(value = "Role", defaultValue = "None") String Role) { //Registered_Billers regbiller
+		if(!Role.equals("AccountHolder")) {
+			return new ResponseEntity<>("Invalid User", HttpStatus.FORBIDDEN);
+		}
 		String status;
 		status = "Biller Register";
 		//System.out.println(name);
 		System.out.println(regbiller.getConsumer_No());
 		service.SaveRegisteredBiller(regbiller);	
-		return status;
+		return new ResponseEntity<>(status, HttpStatus.OK);
 	}
 	
 	@GetMapping("/temp/{id}")
-	public Registered_Billers findRegisteredBillerById(@PathVariable int id) {
-		return service.findRegisteredBillerById(id);
+	public ResponseEntity<Registered_Billers> findRegisteredBillerById(@PathVariable int id, @CookieValue(value = "username", defaultValue = "Atta") String username, @CookieValue(value = "Role", defaultValue = "None") String Role) {
+		if(!Role.equals("AccountHolder")) {
+			return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
+		}
+		return new ResponseEntity<>(service.findRegisteredBillerById(id), HttpStatus.OK);
 	}
 	
 	@DeleteMapping("DelRegBiller/{id}")
-	public String DeleteRegBiller(@PathVariable int id) {
+	public ResponseEntity<String> DeleteRegBiller(@PathVariable int id, @CookieValue(value = "username", defaultValue = "Atta") String username, @CookieValue(value = "Role", defaultValue = "None") String Role) {
 		System.out.println(id);
+		if(!Role.equals("AccountHolder")) {
+			return new ResponseEntity<>("Invalid User", HttpStatus.FORBIDDEN);
+		}
 		boolean flag = service.DeleteRegisteredBiller(id);
+		String status;
 		if(flag) {
-			return "Biller deleted Successfully";
+			status = "Biller deleted Successfully";
 		}else
 		{
-			return "Biller not deleted Successfully";
+			status = "Biller not deleted Successfully";
 		}
+		return new ResponseEntity<>(status, HttpStatus.OK);
 	}
 	
 	@GetMapping("ViewBills/{id}")
-	public List<Bills> ViewBills(@PathVariable int id) {
-		
+	public ResponseEntity<List<Bills>> ViewBills(@PathVariable int id, @CookieValue(value = "username", defaultValue = "Atta") String username, @CookieValue(value = "Role", defaultValue = "None") String Role) {
+		if(!Role.equals("AccountHolder")) {
+			return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
+		}
 		int Consumer_Account_No = id;//bill.getConsumer_Account_No();
-		return service.FindUsersAllBillsPaid(Consumer_Account_No);
+		return new ResponseEntity<>(service.FindUsersAllBillsPaid(Consumer_Account_No), HttpStatus.OK);
 	}
-	/*
-	@PostMapping("PayBill")
-	public String PayBill(@RequestBody Bills bill) {
-		
-	}
-	
-	@GetMapping("/GetPaidBills/{Biller}")
-	public String GetPaidBills(@PathVariable String Biller) {
-		
-	}*/
 	
 	
 }
