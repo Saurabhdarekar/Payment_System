@@ -26,6 +26,9 @@ public interface BillsRepo extends JpaRepository<Bills, Integer> {
 	
 	@Query("SELECT u FROM Bills u where u.Consumer_Account_No=?1 and u.Bill_Status = 1 ")
 	List<Bills> UserBillsPaid(int Consumer_Account_No);
+	
+	@Query("Select u From Bills u where u.Consumer_Account_No=?1 and u.Bill_Status = 0 ")
+	List<Bills> UserBillsUnPaid(int Consumer_Account_No);
 
 	@Query("select Current_Balance from accounts where Account_No=?1")
 	double getAccountBalance(int account_number);

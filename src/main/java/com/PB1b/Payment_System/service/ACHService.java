@@ -40,4 +40,8 @@ public class ACHService {
 		return dao.FindUsersAllBillsPaid(Consumer_Account_No);
 	}
 	
+	public List<Bills> FindUsersAllBillsUnPaid(int Consumer_Account_No) {
+		return dao.FindUsersAllBillsUnPaid(Consumer_Account_No);
+	}
+	
 }

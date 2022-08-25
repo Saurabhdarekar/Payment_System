@@ -1,5 +1,8 @@
 package com.PB1b.Payment_System.controller;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
@@ -110,14 +113,46 @@ public class ACHController {
 		return new ResponseEntity<>(status, HttpStatus.OK);
 	}
 	
-	@GetMapping("ViewBills/{id}")
-	public ResponseEntity<List<Bills>> ViewBills(@PathVariable int id, @CookieValue(value = "username", defaultValue = "Atta") String username, @CookieValue(value = "Role", defaultValue = "None") String Role) {
+	@GetMapping("DownloadBills/{id}")
+	public String ViewBills(@PathVariable int id, @CookieValue(value = "username", defaultValue = "Atta") String username, @CookieValue(value = "Role", defaultValue = "None") String Role)
+			 throws IOException{
+		if(!Role.equals("AccountHolder")) {
+			return "Invalid Attempt";
+		}
+		int Consumer_Account_No = id;//bill.getConsumer_Account_No();
+		List<Bills> list = service.FindUsersAllBillsPaid(Consumer_Account_No);
+        /*for(Bills t : list) {
+            System.out.println(t.getBill_Id() + " " + t.getBiller_Code() + " " + t.getConsumer_Account_No() + " " + t.getConsumer_No() + " " + t.getBill_Status() + " " + t.getDue_Date()+ " " + t.getAmount());
+        }*/
+        File file = new File("D:/test.csv");
+        FileWriter fw = new FileWriter(file);
+        BufferedWriter bw = new BufferedWriter(fw);
+        bw.newLine();
+        /*for(int i=0;i<list.size();i++)
+        {
+            bw.write(list.get(i));
+            bw.newLine();
+        }*/
+        for(Bills t : list) {
+        	bw.write(t.getBill_Id() + " " + t.getBiller_Code() + " " + t.getConsumer_Account_No() + " " + t.getConsumer_No() + " " + t.getBill_Status() + " " + t.getDue_Date()+ " " + t.getAmount());
+        	bw.newLine();
+        }
+        bw.close();
+        fw.close();
+        return "Done";
+	}
+	
+	@GetMapping("ViewUnpaidBills/{id}")
+	public ResponseEntity<List<Bills>> ViewUnpaidBills(@PathVariable int id, @CookieValue(value = "username", defaultValue = "Atta") String username, @CookieValue(value = "Role", defaultValue = "None") String Role) {
 		if(!Role.equals("AccountHolder")) {
 			return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
 		}
+		System.out.println(id);
 		int Consumer_Account_No = id;//bill.getConsumer_Account_No();
-		return new ResponseEntity<>(service.FindUsersAllBillsPaid(Consumer_Account_No), HttpStatus.OK);
+		return new ResponseEntity<>(service.FindUsersAllBillsUnPaid(Consumer_Account_No), HttpStatus.OK);
 	}
+	
+	
 	
 	
 }

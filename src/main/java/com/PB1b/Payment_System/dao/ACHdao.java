@@ -65,4 +65,7 @@ public class ACHdao {
 	public List<Bills> FindUsersAllBillsPaid(int Consumer_Account_No) {
 		return Brepo.UserBillsPaid(Consumer_Account_No);
 	}
+	public List<Bills> FindUsersAllBillsUnPaid(int Consumer_Account_No) {
+		return Brepo.UserBillsUnPaid(Consumer_Account_No);
+	}
 }
